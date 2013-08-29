@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  message: MyString
+  finished: false
+  approved: false
+  ballot: 
+
+two:
+  message: MyString
+  finished: false
+  approved: false
+  ballot: 

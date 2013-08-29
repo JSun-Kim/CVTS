@@ -1,0 +1,168 @@
+ <% title "View Ballot" %>
+<%= render :partial => "ballots/show/buttons" %>
+<div id="email_header">
+<% if !@myvote.nil? %>
+    <% if @ballot.myballots_type == "Community" %>
+      <% if @ballot.vote_type == "add_community_member" %><br>
+        A New Member Added
+        <% if User.find(@ballot.member_id) == current_user %>
+          <%= form_tag url_for(:controller => "cvotes", :action => "voteaction", :id => @myvote.id), :metohd => "put" do %>
+            <% if @myvote.approval.nil? and @ballot.over == false %>
+              <div class="pull-right">
+                Accept this invitation?
+               <%= hidden_field_tag("community_id_invited", @ballot.content_id) %>
+               <%= submit_tag "Yes", :class => "btn btn-primary", :name => 'vote_yes' %>
+               <%= submit_tag "No", :class => "btn btn-primary", :name => 'vote_no' %>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% elsif @ballot.vote_type == "leave_community" %><br>
+        A Member Left
+      <% elsif @ballot.vote_type == "remove_community_member" %><br>
+        A Member to Be Removed
+      <% elsif @ballot.vote_type == "new_community" %>
+        You are invited to a new <p><h3><%= Community.find(@ballot.content_id).name %></h3> </p>community.
+        <%= form_tag url_for(:controller => "cvotes", :action => "voteaction", :id => @myvote.id), :metohd => "put" do %>
+        <% if @myvote.approval.nil? and @ballot.over == false %>
+          <div class="pull-right">
+            Accept this invitation?
+            <%= hidden_field_tag("community_id_invited", @ballot.content_id) %>
+           <%= submit_tag "Yes", :class => "btn btn-primary", :name => 'vote_yes' %>
+           <%= submit_tag "No", :class => "btn btn-primary", :name => 'vote_no' %>
+          </div>
+        <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+<br><br>
+
+  <div id="show_content">
+    <% if @ballot.vote_type == "add_community_member" %>
+      <h2 id="green_tag_display">
+        <% if User.find(@ballot.member_id) == current_user %>
+          <%= User.find(@ballot.author_id) %> has invited you to join a community!
+        <% else %>
+          <%= User.find(@ballot.author_id).realname %> wants to invite <%= User.find(@ballot.member_id).realname %> (<%= User.find(@ballot.member_id) %>) to the community.
+        <% end %>
+      </h2>
+      <div id="exception_vote_email">
+        <strong>Community Name:</strong> <%= @ballot.myballots.name %><br />
+        <strong>Community Description:</strong> <%= @ballot.myballots.description %> <br />
+        <strong>Recipients:</strong> <%= @ballot.users.join(", ") %><br />
+      </div>
+    <% elsif @ballot.vote_type == "new_community" %>
+      <h2 id="green_tag_display">
+        <%= User.find(@ballot.author_id) %> has created a new community!
+      </h2>
+      <br />
+      <div id="exception_vote_email">
+        <strong>Community Name:</strong> <%= @ballot.myballots.name %><br />
+        <strong>Community Description:</strong> <%= @ballot.myballots.description %> <br />
+        <strong>Recipients:</strong> <%= @ballot.users.join(", ") %><br />
+      </div>
+      <br />
+    <% elsif @ballot.vote_type == "response_yes" %>
+      <h2 id="green_tag_display"><%= User.find(@ballot.author_id) %> accepted the invitation.</h2>
+      <div id="exception_vote_email">
+      <strong>Community Name:</strong> <%= Community.find(@ballot.content_id).name %><br />
+      <strong>Community Description:</strong> <%= Community.find(@ballot.content_id).description %> <br />
+      <strong>Recipients:</strong> <%= @ballot.users.join(", ") %><br />
+    </div>
+    <% elsif @ballot.vote_type == "response_no" %>
+      <h2 id="red_tag_display"><%= User.find(@ballot.author_id) %> rejected the invitation.</h2>
+      <div id="exception_vote_email">
+      <strong>Community Name:</strong> <%= Community.find(@ballot.content_id).name %><br />
+      <strong>Community Description:</strong> <%= Community.find(@ballot.content_id).description %> <br />
+      <strong>Recipients:</strong> <%= @ballot.users.join(", ") %><br />
+    </div>
+    <% elsif @ballot.vote_type == "leave_community" %>
+      <h2 id="red_tag_display"><%= User.find(@ballot.author_id) %> left the community.</h2>
+      <div id="exception_vote_email">
+        <strong>Community Name:</strong> <%= @ballot.myballots.name %><br />
+        <strong>Community Description:</strong> <%= @ballot.myballots.description %> <br />
+        <strong>Recipients:</strong> <%= @ballot.users.join(", ") %><br />
+      </div>
+    <% elsif @ballot.vote_type == "remove_community_member" %>
+      <h2 id="red_tag_display"><%= User.find(@ballot.author_id) %> wants to remove <%= User.find(@ballot.member_id) %> from the community</h2>
+      <div id="exception_vote_email">
+        <strong>Community Name:</strong> <%= @ballot.myballots.name %><br />
+        <strong>Community Description:</strong> <%= @ballot.myballots.description %> <br />
+        <strong>Recipients:</strong> <%= @ballot.users.join(", ") %><br />
+      </div>
+    <% end %>
+    
+    <% if @ballot.member_id == current_user %>
+      <% if @myvote.approval %>
+        <%= image_tag("thumb_up.png", :size => "20x20") %> You said 'Yes'
+      <% elsif @myvote.approval == false %>
+        <%= image_tag("thumb_down.png", :size => "20x20") %> You said 'No'
+      <% end %>
+    <% end %>
+    <br />
+
+    <% if @ballot.over == false %>
+      <%= image_tag("vote.jpg", :size => "20x20") %> This message is not seen by all recipients yet.
+    <% elsif @ballot.outcome == 'success' %>
+      <%= image_tag("checkmark.png", :size => "20x20") %> This message is seen by all recipients.
+    <% elsif @ballot.outcome == 'failure' %>
+      <%= image_tag("xmark.png", :size => "20x20") %> This invitation was rejected.
+    <% end %>
+
+  </div>
+<% else %>
+  <% if @ballot.myballots_type == "Community" %>
+    <strong><%= link_to @ballot.myballots.name, @ballot.myballots %></strong> -
+    <% if @ballot.vote_type == "add_community_member" %>
+      Add Member 
+    <% elsif @ballot.vote_type == "leave_community" %>
+      Left Member
+    <% elsif @ballot.vote_type == "remove_community_member" %>
+      Remove Member 
+    <% elsif @ballot.vote_type == "new_community" %>
+      New Community 
+    <% end %>
+  <% end %>
+
+  </div>
+
+
+
+  <div id="show_content">
+    <% if @ballot.vote_type == "add_community_member" %>
+      <h2 id="green_tag_display">
+        <% if User.find(@ballot.member_id) == current_user %>
+          <%= User.find(@ballot.author_id) %> has invited you to join a community!
+        <% else %>
+          <%= User.find(@ballot.author_id).realname %> wants to invite <%= User.find(@ballot.member_id).realname %> (<%= User.find(@ballot.member_id) %>) to the community.
+        <% end %>
+      </h2>
+    <% elsif @ballot.vote_type == "new_community" %>
+      <h2 id="green_tag_display">
+        <%= User.find(@ballot.author_id) %> has created a new community!
+      </h2>
+    <% end %>
+
+    <% if @ballot.vote_type == "leave_community" %>
+      <h2 id="red_tag_display"><%= User.find(@ballot.author_id) %> left the community </h2>
+    <% end %>
+
+    <% if @ballot.vote_type == "remove_community_member" %>
+      <h2 id="red_tag_display"><%= User.find(@ballot.author_id) %> wants to remove <%= User.find(@ballot.member_id) %> from the community </h2>
+    <% end %>
+
+    <p>Ballot status:
+      <% if @ballot.over? %>
+        Finished <%= image_tag("flag.png", :size => "20x20") %>
+      <% else %>
+        Ongoing <%= image_tag("vote.jpg", :size => "20x20") %>
+      <% end %>
+    </p>
+
+
+  </div>
+<% end %>
+<div id="comments">
+  <!-- put comment stuff here-->
+</div>

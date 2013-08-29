@@ -1,0 +1,45 @@
+<!-- Share button -->
+<div class="btn-group btn-mini" style="float: left; margin-left: 5px">
+  <a class="btn btn-mini btn-info dropdown-toggle" data-toggle="dropdown" href="#">
+    Share
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu">
+    <li>
+      <a href="#"
+        target="_blank"
+        onclick="window.open('http://www.facebook.com/sharer.php?u=<%=request.url%>',
+        'Share on Facebook',
+        'height=500,width=500'); return false;">
+        Facebook
+      </a>
+    </li>
+    <li>
+      <a href="#"
+        target="_blank"
+        onclick="window.open('http://twitter.com/share?url=<%= request.url %>',
+        'Share on Twitter',
+        'height=500,width=700'); return false;">
+      Twitter
+      </a>
+    </li>
+    <li>
+      <a href="#email-modal-<%= story.id.to_s %>" data-toggle="modal">
+        Email this story
+      </a>
+    </li>
+  </ul>
+</div>
+
+<!-- Facebook, G+ -->
+<div style="float: left">
+  <%= render :partial => "partials/share/google_plusone_button" %>
+  <%= render :partial => "partials/share/facebook_like_button" %>
+</div>
+
+<%= render :partial => "partials/modal/email",
+  :locals => {
+    :id    => "email-modal-" + story.id.to_s,
+    :story => story
+  }
+%>

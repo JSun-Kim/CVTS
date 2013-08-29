@@ -1,0 +1,14 @@
+<div class="story-content">
+  <div class="expandable">
+    <% if story.image_exists? %>
+      <div class="story-image">
+        <%= image_tag(story.image.url) %>
+      </div>
+    <% end %>
+    <div>
+      <%= sanitize(story.description.force_encoding("utf-8")) %>
+    </div>
+  </div>
+</div>
+<div style="clear: both"></div>
+<hr>

@@ -1,0 +1,38 @@
+<%= javascript_tag do %>
+  <% if user %>
+  $(document).ready(function(e) {
+    // for the user tabs
+    var userPosts = new window.StoryListView({
+      el: $(".user-posts"),
+      type: 8,
+      user: gon.user,
+      viewer: gon.current_user,
+      empty: "No posts written yet."
+    });
+
+    var likedPosts = new window.StoryListView({
+      el: $(".user-likes"),
+      type: 5,
+      user: gon.user,
+      viewer: gon.current_user,
+      empty: "No stories liked yet."
+    });
+
+    $(".posts-tab-link").click(function(e) {
+      userPosts.render();
+    });
+
+    $(".likes-tab-link").click(function(e) {
+      likedPosts.render();
+    });
+
+    // for the user profile header
+    var followUser = new window.FollowView({
+      el: $(".user-follow"),
+      user: gon.user,
+      viewer: gon.current_user,
+      following: gon.following
+    });
+  });
+  <% end %>
+<% end %>

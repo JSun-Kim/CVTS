@@ -1,0 +1,42 @@
+<% title "Create New Community" %>
+
+<div class="form_content">
+  <% if @community.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@community.errors.count, "error") %> prohibited this community from being saved:</h2>
+
+      <ul>
+        <% @community.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= render :partial => "communities/new/buttons" %> <br />
+  <div class="new_tag_form" id="tagstyle">
+    <div id="create-tag-header">New Community</div>
+    <p class="header-description">This community, once created, can be used to post confidential stories to other members in
+      this community.</p>
+
+    <%= form_for(@community) do |f| %>
+
+
+      <label>Name</label>
+    	<%= f.text_field :name %><br>
+
+      <label>Members</label>
+      <%= text_field_tag :members %>
+
+      <label>Description</label><br>
+      <%= f.text_area :description %><br><br>
+
+      <%= f.submit 'Send Invites', :class => "btn btn-primary" %>
+
+      <br />
+    <% end %>
+  </div>
+
+  <div id="bottom_buttons">
+    <%= render :partial => "communities/new/buttons" %>
+  </div>
+</div>

@@ -1,0 +1,291 @@
+// Topic Page CSS
+
+.story-item {
+  background-color: #fefefe;
+  border: 1px solid #eee;
+  float: left;
+  margin: 10px;
+  padding: 10px;
+  overflow: hidden;
+  width: 250px;
+
+  // fixed height for RSS stories
+  &.story-rss {
+    height: 350px;
+
+    .story-rss-image {
+      padding-bottom: 10px;
+    }
+  }
+
+  &.story-twitter {
+    .twitter-user-avatar {
+      border-radius: 5px;
+      height: 35px;
+      width: 35px;
+    }
+
+    .twitter-username {
+      color: #333;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    blockquote {
+      margin-top: 10px;
+      padding-left: 0px;
+      font-size: 16px;
+      color: #333;
+      line-height: 20px;
+      font-family: Georgia;
+      border: none;
+    }
+  }
+
+  &.story-facebook {
+    blockquote {
+      margin-top: 10px;
+      padding-left: 0px;
+      font-size: 16px;
+      font-family: Georgia;
+      border: none;
+    }
+  }
+
+  .story-item-meta {
+    color: #888;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 16px;
+
+    .favicon {
+      margin-top: -1px;
+      height: 16px;
+      width: 16px;
+    }
+
+    .story-item-buttons {
+      margin-top: 5px;
+    }
+
+    .story-external-popularity {
+      margin-top: 3px;
+    }
+  }
+}
+
+.fb-item {
+  width: 400px;
+  border: 1px solid #eee;
+  margin: 10px;
+  padding: 10px;
+
+  .fb-image {
+    padding-right: 5px;
+    padding-left: 10px;
+    text-align:center;
+  }
+
+  blockquote {
+    color: #888;
+    font-family: Georgia;
+    font-size: 15px;
+    line-height: 20px;
+  }
+}
+
+#topic-activity {
+  margin-bottom: 20px;
+
+  hr {
+    margin: 8px;
+  }
+
+  .activity-item {
+    padding: 5px;
+  }
+
+  .activity-at {
+    color: #888;
+  }
+}
+
+.topic-body {
+  margin-top: 5px;
+  min-height: 500px;
+
+  .sidebar {
+    margin-top: 10px;
+    max-width: 300px;
+
+    h4 {
+      padding-bottom: 5px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .nav-stacked li a {
+      line-height: 20px;
+    }
+  }
+
+  .nav-tabs .active a i,
+  .nav-tabs .active a:hover i {
+    background-image: url("/assets/twitter/bootstrap/glyphicons-halflings.png") !important;
+  }
+}
+
+.topic-stories {
+  margin-left: -5px;
+}
+
+.topic-header-container {
+  font-size: 22px;
+  padding: 0;
+  margin: 0;
+  margin-left: 5px;
+}
+
+.filter-search {
+  padding-left: 20px;
+  position: relative;
+
+  .search-cancel {
+    position: absolute;
+    top: 7px;
+    right: 10px;
+    -webkit-transition: .15s opacity;
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAOVBMVEX///8FBQUGBgYDAwMDAwMDAwMGBgYGBgYFBQUAAAAFBQUAAAAEBAQDAwMDAwMDAwMDAwMDAwMAAABMcPQTAAAAE3RSTlMACwsPERIzNzk9PUZGSUxNT1dZm90FQAAAAFlJREFUGFedjEsOwCAIRFWoUvx7/8NWTLHdtrMgeS/DGPMvA+UeY3NLMLnXeAtMxIC9sNUKcOCc2SkvQ/Rig5m83w+yJ4Lg4cLOUmA1o8re3Dm1Etc7bP6YC1LBAmMNPdFwAAAAAElFTkSuQmCC") no-repeat;
+    height: 16px;
+    width: 16px;
+    cursor: pointer;
+    &:hover {
+      background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAQlBMVEX///////////97e3t5eXlqampoaGhnZ2dgYGBcXFwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAuQipPAAAAFnRSTlMAIDZPUFtdXmVpgIiMlqivtri60NLWYRh4wAAAAGlJREFUGNONTkkSgCAMs4gs0gBu//+qZRyq40VzSdvJ0mH4AzL0IBniEUhJYI41e6K4L9lcipAZLmwVtns8EkrBSJrqkJjvXUyF59negri1A09au1eMlhNcr10kjyZJ1tpml2Stfb3+gRPyMAOM6OD34wAAAABJRU5ErkJggg==");
+    }
+
+    &:active {
+      background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAgMAAABinRfyAAAADFBMVEUAAAD///8AAAAAAADI23cLAAAABHRSTlMAAD7MYITzfAAAADJJREFUCNdjCAUCBgQR9oB7KkP4D/2rDGH/9k9lCNn/T5QhRP8HjABxwRIQJSDFqAYAAIjXHQebFIiyAAAAAElFTkSuQmCC");
+    }
+  }
+}
+
+.filter-sort {
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.events-calendar {
+  margin-left: 5px;
+  border: 0px;
+}
+
+.search-query {
+  font-size: 14px;
+}
+
+.empty-message {
+  color: #111;
+  padding-top: 20px;
+  padding-left: 10px
+}
+
+.who-to-follow {
+  color: #555;
+  font-size: 16px;
+  font-weight: normal;
+  margin-left: 10px;
+}
+
+.loading {
+  margin-left: 5px;
+  margin-top: 10px;
+}
+
+.more {
+  font-size: 20px !important;
+  font-weight: 300;
+  padding: 10px !important;
+  margin-bottom: 20px !important;
+  margin-left: 5px !important;
+}
+
+.follow-avatars {
+  float: left;
+  margin-bottom: 10px;
+}
+
+.follow-avatar {
+  float: left;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  width: 40px;
+}
+
+.landing-page-intro {
+  font-size: 18px !important;
+  line-height: 24px !important;
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 767px) and (max-width: 1024px) {
+  .topic-content {
+    // width: 95% !important;
+    margin-left: 10px !important;
+  }
+
+  .sidebar {
+    // display: none !important;
+  }
+
+  .story-item {
+    width: 200px;
+  }
+
+  .story-rss {
+    height: 400px !important;
+  }
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 768px) {
+  .topic-content {
+    width: 98% !important;
+    margin-left: 0px !important;
+  }
+
+  .topic-header {
+    font-size: 20px;
+  }
+
+  .search-query {
+    width: 100px;
+  }
+
+  .story-item {
+    width: 300px !important;
+  }
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+  .topic-content {
+    width: 98% !important;
+    margin-left: 0px !important;
+  }
+
+  .story-item {
+    width: 90% !important;
+  }
+
+  .topic-header {
+    font-size: 16px;
+  }
+}
+
+.datepicker-field {
+  width: 80%;
+}
+
+.map {
+  clear: both;
+  width: 100%;
+}

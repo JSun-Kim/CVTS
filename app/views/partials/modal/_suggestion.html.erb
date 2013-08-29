@@ -1,0 +1,49 @@
+<div class="modal hide" id="local-publisher-modal">
+  <div class="modal-header">
+    <a data-dismiss="modal" class="close">&times;</a>
+    <h3>Send Link</h3>
+  </div>
+
+  <%= form_tag({:controller => :notifier, :action => :send_blog_suggestion}) do %>
+    <div class="modal-body">
+      <p>
+        <div class="control-group">
+          <label>
+            Link <span class="important">*</span>
+          </label>
+          <div class="controls">
+            <%= text_field :blog, :url, :class => "span10" %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label>
+            Your email <span class="important">*</span>
+          </label>
+          <div class="controls">
+            <%= text_field :blog, :email, :class => "span10" %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label>
+            Description
+          </label>
+          <div class="controls">
+            <%= text_area :blog, :description, :class => "span10", :rows => 3 %>
+          </div>
+        </div>
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary">Send</button>
+      <button class="btn" data-dismiss="modal">Cancel</button>
+    </div>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  $("#local-publisher-modal").on('shown', function () {
+    $(this).find('#blog_url').focus();
+  });
+</script>

@@ -1,0 +1,103 @@
+<% title "View Community" %>
+<%= render :partial => "communities/show/buttons" %>
+<div id="email_header">
+  <strong><%= @community.name %></strong>
+
+  <span id="header_buttons">
+    <div class="pull-left" id="Members">
+      <a data-toggle="modal" href="#addMember-modal" class="btn btn-small btn-info">
+        <i class="icon-user icon-white"></i>
+        Add Member
+      </a>
+      <a data-toggle="modal" href="#leaveCommunity-modal" class="btn btn-small btn-info">
+        <i class="icon-eject icon-white"></i>
+        Leave Community
+      </a>
+    </div>
+  <!-- Modal for buttons in the community -->
+    <%= render :partial => "partials/modal/addMember" %>
+    <%= render :partial => "partials/modal/leaveCommunity" %>
+</span>
+</div>  <br>
+
+
+<div id="show_content">
+  <h4>Community Members</h4>
+  <ul class="tag-show-users">
+    <% @community.users.each do |u| %>
+        <li><%= u.login %> (<%= u.realname %>) : <%= u.email %>, joined at <%= joined_date(u.id, @community.id) %> </li>
+    <% end %>
+  </ul>
+  
+   <h4>Members left:</h4>
+  <ul class="tag-show-users">
+    <% @left_members.each do |u| %>
+        <li><%= u.login %> (<%= u.realname %>) : <%= u.email %>, left at <%= left_date(u.id, @community.id) %></li>
+    <% end %>
+  </ul>
+
+  <h4>Users in Pneding:</h4>
+  <ul class="tag-show-users">
+    <% @pending_members.each do |u| %>
+        <li><%= u.login %> (<%= u.realname %>) : <%= u.email %></li>
+    <% end %>
+  </ul>
+
+  <h4>Who Rejected to Join:</h4>
+  <ul class="tag-show-users">
+    <% @reject_members.each do |u| %>
+        <li><%= u.login %> (<%= u.realname %>) : <%= u.email %>, rejected at <%= reject_date(u.id, @community.id) %></li>
+    <% end %>
+  </ul>
+  
+  <h4>Description</h4>
+  <%= @community.description %>
+</div>
+
+<div id="bottom_buttons">
+  <%= render :partial => "communities/show/buttons" %>
+</div>
+
+
+<div class="modal hide" id="add_member_dialog">
+  <%= form_for(@community) do |f| %>
+      <%= hidden_field_tag("edit_type", "add") %>
+      <%= f.label :email %>
+      <br/>
+      <%= text_field_tag :add_person %>
+      <%= f.submit "Submit", :class => "buttons" %>
+  <% end %>
+</div>
+
+<div class="modal hide" id="remove_member_dialog">
+  <%= form_for(@community) do |f| %>
+      <%= hidden_field_tag("edit_type", "remove") %>
+      <%= f.label :email %>
+      <br/>
+      <%= text_field_tag :remove_person %>
+      <%= f.submit "Submit", :class => "buttons" %>
+  <% end %>
+</div>
+
+
+<div class="modal hide" id="edit_description_dialog">
+  <%= form_for(@community) do |f| %>
+      <%= f.label :description %>
+      <br/>
+      <%= f.text_area :description %>
+      <%= f.submit "Submit", :class => 'buttons' %>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  var $add_member_dialog = $('#add_member_dialog').dialog({
+        autoOpen:false,
+        title:'Add Member',
+        modal:true,
+        draggable:false,
+        width:230
+    });
+   $('#add_member').click(function () {
+        $add_member_dialog.dialog('open');
+    });
+</script>

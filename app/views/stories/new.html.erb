@@ -1,0 +1,20 @@
+<%= form_for :discuss, :html => {:multipart => true}, :url => discuss_path do |f| %>
+  <h4>Take a Photo</h4>
+  <div class="control-group">
+    <%= f.file_field :photo, :class => "choose-photo" %>
+    <div class="controls">
+      <%= f.text_field :title,
+        :placeholder => "Give it a title...",
+        :class => "span8 post-title"
+      %>
+    </div>
+  </div>
+
+  <%= f.hidden_field :topic, :value => -1 %>
+  <div class="form-actions">
+    <button type="submit" class="btn btn-success">
+      Post
+    </button>
+  </div>
+
+<% end %>

@@ -1,0 +1,9 @@
+<% if (!exists && count == 1) { %>
+  <h4>Liked By</h4>
+<% } %>
+<a href="/users/<%= user.login %>" title="<%= user.login %>" class="story-liker" id="story-liker<%= user.id %>">
+  <img src="<%= image_url %>">
+</a>
+<% if (!exists && count == 1) { %>
+  <hr>
+<% } %>

@@ -1,0 +1,25 @@
+
+<div class="modal hide" id="leaveCommunity-modal">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">&times;</a>
+    <h3>Leave Community</h3>
+  </div>
+  <% if logged_in? %>
+    <%= form_for (@community) do |f| %>
+    <div class="modal-body">
+      <p >
+        Would you like to leave this group?
+        <%= hidden_field_tag("edit_type", "leave") %>
+        <%= hidden_field_tag("leave_person", User.find(current_user.id).email) %>
+      </p>
+    </div>
+    <div class="modal-footer">
+        <a href="#" data-dismiss="modal" class="btn">Cancel</a>
+        <button type="submit" class="btn btn-primary">
+          Leave Community
+        </button>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+

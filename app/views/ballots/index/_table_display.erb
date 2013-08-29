@@ -1,0 +1,42 @@
+        <td onclick="location.href='<%= ballot_path(ballot) %>'" width="200px">
+          <% if ballot.myballots_type == "Community" %>
+            <%= ballot.myballots.name %>
+          <% else %>
+            Response to the invitation
+          <% end %>
+        </td>
+        <td onclick="location.href='<%= ballot_path(ballot) %>'" class="overflow">
+          <% if ballot.vote_type == "add_community_member" %>
+            <% if User.find(ballot.member_id) == current_user %>
+              <%= User.find(ballot.author_id) %> has invited you to join a community!
+            <% else %>
+              <%= User.find(ballot.author_id).realname %> wants to invite <%= User.find(ballot.member_id).realname %> (<%= User.find(ballot.member_id) %>) to the community
+            <% end %>
+          <% elsif ballot.vote_type == "leave_community" %>
+            <% if User.find(ballot.member_id) == current_user %>
+              You left the community.
+            <% else %>
+              <%= User.find(ballot.author_id) %> left the community.
+            <% end %>
+          <% elsif ballot.vote_type == "response_yes" %>
+            <% if User.find(ballot.author_id) == current_user %>
+              You accepted the invitation.
+            <% else %>
+              <%= User.find(ballot.author_id) %> accepted the invitation.
+            <% end %>
+          <% elsif ballot.vote_type == "response_no" %>
+            <% if User.find(ballot.author_id) == current_user %>
+              You rejected the invitation.
+            <% else %>
+              <%= User.find(ballot.author_id) %> rejected the invitation.
+            <% end %>
+          <% elsif ballot.vote_type == "remove_community_member" %>
+            <%= User.find(ballot.author_id) %> wants to remove <%= User.find(ballot.member_id) %> from the community
+          <% elsif ballot.vote_type == "new_community" %>
+            <%= User.find(ballot.author_id) %> has created a new community!
+          <% elsif ballot.vote_type == "exception" %>
+            <%= User.find(ballot.author_id) %> wants to make an exception
+          <% end %>
+        </td>
+        
+        <td onclick="location.href='<%= ballot_path(ballot) %>'" width="80px" id="index_right_field"><%= format_ballot_date ballot.created_at %></td>

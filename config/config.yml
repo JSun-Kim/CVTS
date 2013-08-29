@@ -1,0 +1,95 @@
+# config/config.yml
+
+development:
+  # Topic modeling source (VTSTopicModeling installation)
+  TM_url                      : "http://grumpy.cs.vt.edu/vts_topic_modeling/"
+  TM_topics_path              : "TopicsTerms.csv"
+  TM_document_topic_path      : "DocumentTopicsDist.csv"
+  TM_stories_path             : "stories.csv"
+
+  ####################
+  # Facebook stories data source (rss_cacher installation)
+  fb_datasource: "http://grumpy.cs.vt.edu/vts_fb_cacher/"
+
+  # Twitter stories data source (rss_cacher installation)
+  twitter_datasource: "http://grumpy.cs.vt.edu/vts_twitter_cacher/"
+
+  ####################
+  # Facebook
+
+  # Facebook App Id
+  fb_app_id: "137202616358311"
+
+  # Facebook App Secret Key
+  fb_app_secret_key: "f5696c6465a60835da01cd7336ef4132"
+
+  # Permanent access key for a facebook user with permissions:
+  # offline_access
+  # manage_pages
+  # publish_streams
+  #
+  # The Facebook User should be an admin of the Facebook Page for this App
+  #
+  # And the permissions are taken with respect to the
+  # associated Facebook App with this Rails App
+  #
+  fb_access_key: "AAAB8yPk11acBAFJZCCLYAsv6G5csgNIZAdnRw344ZBXo2i8rEZANlLibcQlK8u1qpFIsKDV3QecFBDaJEoC8NA5zvt7RIPqPHbEGln2fBAZDZD"
+
+  # ID of Facebook Page for this App
+  fb_page_id: "389505157730229"
+
+
+  ####################
+  # Twitter
+  # Twitter App Consumer Key
+  twitter_consumer_key: "R21dYNWvauJWm2SArQlYdA"
+  
+  # Twitter App Secret Key
+  twitter_consumer_secret: "rhsOtKZ0FUx2Y8sJCe3ZEuoW9NbJEIgHUkm2UDoro"  
+
+production:
+  # Topic modeling source (VTSTopicModeling installation)
+  TM_url                      : "http://grumpy.cs.vt.edu/vts_topic_modeling/"
+  TM_topics_path              : "TopicsTerms.csv"
+  TM_document_topic_path      : "DocumentTopicsDist.csv"
+  TM_stories_path             : "stories.csv"
+
+  ####################
+  # Facebook stories data source (rss_cacher installation)
+  fb_datasource: "http://grumpy.cs.vt.edu/vts_fb_cacher/"
+
+  # Twitter stories data source (rss_cacher installation)
+  twitter_datasource: "http://grumpy.cs.vt.edu/vts_twitter_cacher/"
+
+  ####################
+  # Facebook
+
+  # Facebook App Id
+  fb_app_id: "137202616358311"
+
+  # Facebook App Secret Key
+  fb_app_secret_key: "f5696c6465a60835da01cd7336ef4132"
+
+  # Permanent access key for a facebook user with permissions:
+  # offline_access
+  # manage_pages
+  # publish_streams
+  #
+  # The Facebook User should be an admin of the Facebook Page for this App
+  #
+  # And the permissions are taken with respect to the
+  # associated Facebook App with this Rails App
+  #
+  fb_access_key: "AAAB8yPk11acBAFJZCCLYAsv6G5csgNIZAdnRw344ZBXo2i8rEZANlLibcQlK8u1qpFIsKDV3QecFBDaJEoC8NA5zvt7RIPqPHbEGln2fBAZDZD"
+
+  # ID of Facebook Page for this App
+  fb_page_id: "389505157730229"
+
+
+  ####################
+  # Twitter
+  # Twitter App Consumer Key
+  twitter_consumer_key: "R21dYNWvauJWm2SArQlYdA"
+  
+  # Twitter App Secret Key
+  twitter_consumer_secret: "rhsOtKZ0FUx2Y8sJCe3ZEuoW9NbJEIgHUkm2UDoro"  

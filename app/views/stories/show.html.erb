@@ -1,0 +1,102 @@
+
+<!-- Story Header -->
+<%= render :partial => "stories/header",
+  :locals => {:story => @story}
+%>
+
+<div class="row-fluid">
+  <div class="span6 story">
+
+    <!-- Story Meta -->
+    <div class="row-fluid">
+      <div class="span7 story-meta">
+        <%= render :partial => "stories/meta", :locals => {:story => @story} %>
+      </div>
+
+      <!-- Story Buttons -->
+      <div class="pull-left" style="margin-bottom: 5px">
+        <div style="float: left; margin-top: 2px">
+          <% if @story.kind != Story::Rss and logged_in? and @story.user_id == current_user.id %>
+            <%= link_to "Delete", @story, :method => :delete, :class => "btn btn-danger btn-mini" %>
+          <% end %>
+          <!-- Like button -->
+          <a class="story-like<%= @story.id %> like-btn btn btn-mini btn-success has-tooltip">
+            <i class='icon-star-empty icon-white'></i>
+            <span class="like-count"></span>
+          </a>
+        </div>
+
+        <%= render :partial => "stories/share",
+          :locals => { :story => @story }
+        %>
+
+      </div>
+    </div>
+
+    <!-- Story Body -->
+    <%= render :partial => "stories/body", :locals => {
+      :story => @story
+    } %>
+
+    <!-- Story communities -->
+        <br><br>
+        <font size="2" color="gray">Shared communities: 
+        
+        <% unless @story_communities.nil? %>
+          <% @story_communities.each do |community| %>
+             <li><%= community.name %></li>
+          <% end %>
+        <% end %>
+        </font>
+        <br>
+        
+    <!-- Related Facebook and Twitter posts -->
+    <%= render :partial => "stories/related_posts", :locals => {
+      :posts => @related_posts
+    }
+    %>
+
+    <!-- Story Likers -->
+    <%= render :partial => "stories/likers",
+      :locals => {:story => @story, :users => @likers}
+    %>
+
+    <!-- KJS: Story Comments: changed by Ji-Sun -->
+    <%= nested_comments @comments %>
+    <%= render :partial => "comments/form" %>
+
+
+    <% if @story.kind == Story::Rss %>
+      <hr>
+      <div class="story-footer">
+        Original article: <%= link_to @story.source_url, @story.source_url %>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Story Sidebar -->
+  <div class="sidebar story-sidebar span4 hidden-phone hidden-tablet">
+    <%= render :partial => "stories/sidebar", :locals => {
+        :story => @story,
+        :more_stories => (defined? @more_stories) ? @more_stories : nil,
+        :more_stories_from_source => @more_stories_from_source,
+        :user_posted_stories => (defined? @user_posted_stories) ? @user_posted_stories : nil,
+        :all_posted_stories => (defined? @all_posted_stories) ? @all_posted_stories : nil,
+        :topic => (defined? @topic) ? @topic : nil
+      }
+    %>
+  </div>
+
+</div>
+
+<!-- Story Footer -->
+<%= render :partial => "stories/footer", :locals => {
+    :story => @story,
+    :current_user => current_user
+  }
+%>
+<p>
+<%= link_to 'Back to ' + @story.title, '/#shared' %>
+</p>
+
+

@@ -1,0 +1,86 @@
+<div class="modal hide" id="navbar-share-modal">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">&times;</a>
+    <h3>Write a Blog Post</h3>
+  </div>
+  <% if logged_in? %>
+    <%= form_for :discuss, :html => {:multipart => true}, :url => discuss_path do |f| %>
+      <div class="modal-body">
+        <p >
+          <div class="control-group">
+            <div class="controls">
+              <%= f.text_field :title,
+                :placeholder => "Your post title...",
+                :class => "span4"
+              %>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="controls">
+              <%= f.text_area :description,
+                :rows => 8,
+                :placeholder => "Your post...",
+                :class => "span5" %>
+            </div>
+          </div>
+          <div class="control-group">
+            <label>
+              <strong>Add a Photo</strong>
+            </label>
+            <div class="controls">
+              <%= f.file_field :photo, :class => "choose-photo" %>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="controls">
+              <% @communities = current_user.communities.current_communities %>
+              <% if !@communities.empty? %>
+              <label>
+                <strong>Select communities</strong><br>
+                <font size="2" color="gray">This post is only visible to the selected community.</font>
+              </label>
+              <table width="60%" class="tbl">
+                <% @communities.in_groups_of(2, false) do |community_array| %>
+                  <tr>
+                    <% for community in community_array %>
+                      <% if community.name != 'Public' %> 
+                        <td width="30px">
+                          <%= hidden_field_tag "unchecked_ids[]", community.id %> 
+                          <%= check_box_tag "community_ids[]", community.id, false %>
+                        </td>
+                        <td width="100px"><%= community.name %></td>
+                      <% end %>
+                    <% end %>
+                  </tr>
+                <% end %>
+              </table>
+              <% end %>
+            </div>
+          </div>
+        </p>
+      </div>
+      <div class="modal-footer">
+        <a href="#" data-dismiss="modal" class="btn">Cancel</a>
+        <button type="submit" class="btn btn-primary">
+          Post
+        </button>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="modal-body">
+      <p>
+        You need to be signed in to write a blog entry.
+      </p>
+    </div>
+    <div class="modal-footer">
+        <a href="#" data-dismiss="modal" class="btn">Close</a>
+        <%= link_to "Log In", login_url, :class => "btn btn-primary" %>
+      </div>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  $("#navbar-share-modal").on('shown', function () {
+    $("#discuss_title").focus();
+  });
+</script>

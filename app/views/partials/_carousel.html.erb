@@ -1,0 +1,51 @@
+<% if stories.count != 0 %>
+  <div id="stories-carousel" class="carousel">
+    <div class="carousel-inner">
+      <% first = true %>
+      <% for story in stories %>
+        <% if story.image.exists? or story.image_url != "" %>
+          <div class="item <% if first %>active<% first = false %><% end %>">
+            <%= story_item_thumbnail(story, "original") %>
+            <div class="carousel-caption hidden-phone">
+              <h5>
+                <%= render :partial => "partials/story_item/title",
+                  :locals => {
+                    :story => story
+                  }
+                %> ·
+                <span class='story-published-at'>
+                  <% if story.published_at %>
+                    <%= time_ago_in_words story.published_at %>
+                  <% else %>
+                    <%= time_ago_in_words story.created_at %>
+                  <% end %> ago
+                </span>
+                 ·
+                <%= render :partial => "partials/button/comment/html", :locals => {:story => story} %>
+                <%= render :partial => "partials/button/like/html", :locals => {:story => story} %>
+              </h5>
+              <p>
+                <%= story_item_content(story, 200, 140) %>
+              </p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <% if stories.count != 1 %>
+      <!-- Carousel nav -->
+      <a class="carousel-control left" href="#stories-carousel" data-slide="prev">&lsaquo;</a>
+      <a class="carousel-control right" href="#stories-carousel" data-slide="next">&rsaquo;</a>
+    <% end %>
+  </div>
+<% end %>
+
+<% if stories.count > 1 %>
+   <script type='text/javascript'>
+     $(document).ready(function(e) {
+      $('.carousel').carousel({
+        interval: 5000
+      });
+    });
+  </script>
+<% end %>

@@ -1,0 +1,33 @@
+<% title "Community Errors" %>
+<%= render :partial => "communities/new/error_buttons" %>
+<div id="email_header"><h3>There was a problem with creating this community. Please see details below.</h3>
+</div>
+<br><br>
+<div id="show_content">
+  <% if !invalid_members.empty? %>
+    <h4>One or more <u>members</u> were not found in the system. Press the 'Back' button in your browser to try again.</h4>
+
+    Please fix the following community members: <br />
+    <% invalid_members.each do |m| %>
+      <strong><%= m %></strong> <br />
+    <% end %>
+
+  <% elsif !invalid_communities.empty? %>
+    <h4>One or more <u>communities</u> were not found in the system. Press the 'Back' button in your browser to try again.</h4>
+
+    Please fix the following communities: <br />
+    <% invalid_communities.each do |t| %>
+      <strong><%= t %></strong> <br />
+    <% end %>
+
+  <% elsif members.empty? %>
+    <h4>Please provide some members for this community. Try entering some email addresses in the Members field. Press the 'Back' button in your browser to try again.</h4>
+  <% end %>
+
+
+
+</div>
+
+<div id="bottom_buttons">
+  <%= render :partial => "communities/new/error_buttons" %>
+</div>

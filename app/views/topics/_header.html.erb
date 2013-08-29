@@ -1,0 +1,20 @@
+<% Time::DATE_FORMATS[:day_month_and_year] = "%d %B %Y" %>
+
+<%
+  topic_date = topic.day.to_date
+  today_date = DateTime.now.to_date
+%>
+
+<ul class="breadcrumb">
+  <li class="active">
+    <% if topic.title %>
+      [ <%= topic.title %> ]
+    <% else %>
+      Uncategorized
+    <% end %>
+  </li>
+</ul>
+
+<h3 class="title">
+  [ <%= topic.title %> ]
+</h3>

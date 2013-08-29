@@ -1,0 +1,54 @@
+<% if logged_in? %>
+  <%= form_for :discuss, :html => {:multipart => true}, :url => discuss_path do |f| %>
+   <a class="close" id="close-share-box" style="display: none;">&times;</a>
+    <div class="control-group">
+      <div class="controls">
+        <%= f.text_field :title,
+          :placeholder => "Share your views...",
+          :class => "span8",
+          :id => "share-box"
+        %>
+      </div>
+    </div>
+    <div id="share-box-content" style="display: none;">
+      <div class="control-group">
+        <div class="controls">
+          <%= f.text_area :description,
+            :rows => 5,
+            :placeholder => "Your message...",
+            :class => "span6"
+          %>
+        </div>
+      </div>
+      <div class="control-group">
+        <label><strong>Add a Photo</strong></label>
+        <div class="controls">
+          <%= f.file_field :photo %>
+        </div>
+      </div>
+      <div class="control-group">
+        <label><strong>Share on...</strong></label>
+        <div class="controls">
+          <%= f.check_box :twitter %> Twitter&nbsp;&nbsp;&nbsp;
+          <%= f.check_box :facebook %> Facebook
+        </div>
+      </div>
+      <%= f.hidden_field :topic, :value => (topic) ? topic.id : -1 %>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-success">
+          Share
+        </button>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<%= javascript_tag do %>
+  $("#share-box").click(function(e) {
+    $("#share-box-content, #close-share-box").show();
+  });
+
+  $("#close-share-box").click(function(e) {
+    $("#share-box-content, #close-share-box").hide();
+  });
+<% end %>

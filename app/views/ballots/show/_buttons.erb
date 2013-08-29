@@ -1,0 +1,9 @@
+<div class="content_buttons">
+<% if @filter == "pending" %>
+  <strong><%= link_to "« Back to Pending Messages", ballots_path(:filter => "pending") %></strong>
+<% elsif @filter == "past" %>
+  <strong><%= link_to "« Back to Past Messages", ballots_path(:filter => "past") %></strong>
+<% else %>   
+<strong><%= link_to "« Back to Messages", :back %></strong>
+<% end %>   
+</div>

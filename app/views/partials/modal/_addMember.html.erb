@@ -1,0 +1,25 @@
+
+<div class="modal hide" id="addMember-modal">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">&times;</a>
+    <h3>Add a new member</h3>
+  </div>
+  <% if logged_in? %>
+    <%= form_for (@community) do |f| %>
+    <div class="modal-body">
+      <p >
+        <%= hidden_field_tag("edit_type", "add") %>
+      <%= f.label :email %>
+      <%= text_field_tag :add_person, nil, :autofocus => true %>
+      </p>
+    </div>
+    <div class="modal-footer">
+        <a href="#" data-dismiss="modal" class="btn">Cancel</a>
+        <button type="submit" class="btn btn-primary">
+          Add
+        </button>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+

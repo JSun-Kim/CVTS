@@ -1,0 +1,55 @@
+# config/config.yml
+
+development:
+
+  # Topic modeling source (VTSTopicModeling installation)
+  TM_url                      : "http://grumpy.cs.vt.edu/vts_topic_modeling/"
+  TM_topics_path              : "TopicsTerms.csv"
+  TM_document_topic_path      : "DocumentTopicsDist.csv"
+  TM_stories_path             : "stories.csv"
+
+  ####################
+
+  # Facebook stories data source (rss_cacher installation)
+  fb_datasource: "http://grumpy.cs.vt.edu/vts_fb_cacher/"
+
+  # Twitter stories data source (rss_cacher installation)
+  twitter_datasource: "http://grumpy.cs.vt.edu/vts_twitter_cacher/"
+
+  ####################
+
+  # Facebook
+
+  # Facebook App Id
+  fb_app_id: "385847914858275"
+
+  # Facebook App Secret Key
+  fb_app_secret_key: "c19e7d82ea36a30cb7ea6682b0251c78"
+
+  # Permanent access key for a facebook user with permissions:
+  # offline_access
+  # manage_pages
+  # publish_streams
+  #
+  # The Facebook User should be an admin of the Facebook Page for this App
+  #
+  # And the permissions are taken with respect to the
+  # associated Facebook App with this Rails App
+  #
+  fb_access_key: ""
+
+  # ID of Facebook Page for this App
+  fb_page_id: ""
+
+  ####################
+
+  # Twitter
+
+  # Twitter App Consumer Key
+  twitter_consumer_key: "<consumer_key>"
+
+  # Twitter App Secret Key
+  twitter_consumer_secret: "<consumer_secret>"
+
+  ####################
+

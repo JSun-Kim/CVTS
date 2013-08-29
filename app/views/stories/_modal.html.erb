@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="span8 story">
+    <div class="row">
+      <div class="span6" style="width: 325px">
+        <div class="row" style="margin-left: 0px;">
+          <%= render :partial => "stories/meta",
+            :locals => {:story => story}
+          %>
+        </div>
+      </div>
+    </div>
+    <%= render :partial => "stories/body", :locals => {
+      :story => story
+    } %>
+  </div>
+</div>

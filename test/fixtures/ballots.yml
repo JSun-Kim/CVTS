@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  content_id: 1
+  over: false
+  outcome: MyString
+  vote_type: MyString
+  member_id: 1
+  myballots_id: 1
+  myballots_type: MyString
+  author_id: 1
+
+two:
+  content_id: 1
+  over: false
+  outcome: MyString
+  vote_type: MyString
+  member_id: 1
+  myballots_id: 1
+  myballots_type: MyString
+  author_id: 1

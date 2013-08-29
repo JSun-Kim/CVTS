@@ -1,0 +1,99 @@
+// Individual Story CSS
+
+.story-title {
+  margin-bottom: 10px;
+  padding-bottom: 0px;
+  border-bottom: 1px solid #ddd;
+  font-size: 22px;
+}
+
+.story {
+  padding-right: 20px;
+
+  .story-image {
+    background: #eee;
+    border: 1px solid #ccc;
+    display: inline-block;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    max-width: 300px
+    padding: 5px;
+  }
+
+  .story-meta {
+    clear: both;
+    font-size: 13px;
+    font-weight: 300;
+    float: left;
+    padding: 5px 0 20px 0;
+    .favicon {
+      margin-top: 2px;
+    }
+  }
+
+  .story-title {
+    float: left;
+    width: 96%;
+  }
+
+  .story-liker {
+    margin-right: 2px;
+    margin-bottom: 2px;
+    img {
+      width: 35px;
+      height: 35px;
+    }
+  }
+
+  .story-footer {
+    color: #888;
+    font-size: 12px;
+    font-style: italic;
+  }
+}
+
+.story-sidebar {
+  margin-left: 20px;
+  padding-left: 20px;
+  max-width: 500px;
+}
+
+.modal {
+  .story-meta {
+    padding-top: 0px;
+    margin-top: -10px;
+  }
+}
+
+.twitter-share-button {
+  margin-bottom: -3px !important;
+  width: 90px !important;
+}
+
+#___plusone_0 > iframe {
+  margin-top: 3px !important;
+}
+
+.fb_like > iframe {
+  width: 60px !important;
+}
+
+@media (min-width: 767px) and (max-width: 1024px) {
+  .story {
+    width: 60% !important;
+  }
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 768px) {
+  .story {
+    width: 98% !important;
+  }
+}
+
+// Posting a photo
+.choose-photo {
+  line-height: 17px !important;
+  width: 20%;
+}

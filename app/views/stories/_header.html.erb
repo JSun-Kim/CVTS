@@ -1,0 +1,46 @@
+<ul class="breadcrumb">
+  <% if story.topic %>
+    <%
+      story_date = story.topic.day.to_date
+      today_date = DateTime.now.to_date
+    %>
+    <li>
+      [ <%= link_to story.topic.title,
+          "/#week/news/topic/#{story.topic.id}",
+          :class => "has-tooltip",
+          :title => "View topic [ " + story.topic.title + " ]" %>
+      ]
+      <span class="divider">/</span>
+    </li>
+    <li>
+      <% if story.source == nil %>
+        <%=
+        # todo: set source_name to a more generic value (domain of link)
+        source_name = source_url
+        link_to story.source_url,
+          "/#all/news/source/#{source_name}",
+          :class => "has-tooltip",
+          :title => "View all from " + source_name
+        %>
+      <% else %>
+        <%=
+        link_to story.source,
+          "/#all/news/source/#{story.source}",
+          :class => "has-tooltip",
+          :title => "View all from " + story.source
+        %>
+      <% end %>
+      <span class="divider">/</span>
+    </li>
+  <% else %>
+  <li>
+    Uncategorized
+    <span class="divider">/</span>
+  </li>
+  <% end %>
+  <li class="active">
+    <%= story.title.force_encoding("utf-8") %>
+  </li>
+</ul>
+
+<h3 class="story-title"><%= story.title %></h3>

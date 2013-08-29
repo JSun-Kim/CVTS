@@ -1,0 +1,20 @@
+<% if topic %>
+  <% if ((defined? story) and story and story.topic_id == topic.id) ||
+    ((defined? selected) and selected) %>
+    <li class="active">
+  <% else %>
+    <li>
+  <% end %>
+
+  <% keyword_content = render :partial => 'topics/text_keywords',
+      :locals => {:topic => topic} %>
+
+  <%= link_to "[ " << topic.title << " ]",
+    "#",
+    :class => "has-popover topic",
+    "data-placement" => "bottom",
+    "data-id" => topic.id,
+    "data-content" => keyword_content,
+    :title => "[ " + topic.title + " ]" %>
+  </li>
+<% end %>

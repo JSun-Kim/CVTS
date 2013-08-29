@@ -1,0 +1,44 @@
+<% title "Ballot Inbox" %>
+<% if !@cvotes.empty? %>
+
+  <table width="100%" class="tbl">
+    <%= form_tag url_for(:controller => "cvotes", :action => "voteaction"), :metohd => "put" do %>
+      <% @cvotes.each do |vote| %>
+        <tr>
+          <% @ballot = vote.ballot %>
+          <td width="25px">
+            <% unless vote.approval.nil? and @ballot.over == false %>
+              <% if vote.approval %>
+                <%= image_tag("thumb_up.png", :size => "20x20") %>
+              <% else %>
+                <%= image_tag("thumb_down.png", :size => "20x20") %>
+              <% end %>
+            <% end %>
+          </td>
+          <td width="25px">
+            <% if @ballot.outcome == 'success' %>
+              <%= image_tag("checkmark.png", :size => "20x20") %>
+            <% elsif @ballot.outcome == 'failure' %>
+              <%= image_tag("xmark.png", :size => "20x20") %>
+            <% elsif @ballot.over == false %>
+              <%= image_tag("vote.jpg", :size => "20x20") %>
+            <% end %>
+
+          </td>
+
+          <%= render :partial => "ballots/index/table_display", :locals => {:ballot => @ballot} %>
+        </tr>
+      <% end %>
+    <% end %>
+
+  </table>
+<% else %>
+  <div class="no_content">
+    <% if @filter.include?("past") %>
+      You have no past messages. <br />
+    <% else %>
+      You have no pending messages. <br />
+    <% end %>
+  </div>
+<% end %>
+

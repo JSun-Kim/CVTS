@@ -1,0 +1,14 @@
+<% i = 0 %>
+<% for story in stories %>
+  <% if i%3 == 0 %>
+    <% if i != 0 %>
+      </div>
+    <% end %>
+    <div class="row-fluid">
+  <% end %>
+  <%= render :partial => "partials/story_item/body", :locals => { :story => story } %>
+  <% i += 1 %>
+  <% if i == stories.length %>
+    </div>
+  <% end %>
+<% end %>
